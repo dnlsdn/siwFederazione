@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrazione</title>
+    <link rel="stylesheet" th:href="@{css/register.css}">
+    <link href="/static/css/register.css" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+    <h1>Registrati</h1>
+    <form th:action="@{/register}" th:method="POST">
+        <div class="segmented-picker">
+            <input id="player" name="ruolo"
+                   th:checked="${ruoloSelezionato == T(com.dnlsdn.progettodocente.model.Credenziali.Ruolo).GIOCATORE}"
+                   th:onclick="'window.location.href=\'/aggiorna?ruolo=GIOCATORE\''"
+                   type="radio"
+                   value="GIOCATORE">
+            <label class="picker-option" for="player">Giocatore</label>
+
+            <input id="president" name="ruolo"
+                   th:checked="${ruoloSelezionato == T(com.dnlsdn.progettodocente.model.Credenziali.Ruolo).PRESIDENTE}"
+                   th:onclick="'window.location.href=\'/aggiorna?ruolo=PRESIDENTE\''"
+                   type="radio"
+                   value="PRESIDENTE">
+            <label class="picker-option" for="president">Presidente</label>
+        </div>
+
+        <input name="username" placeholder="Username" required type="text">
+        <input name="password" placeholder="Password" required type="password">
+
+        <!-- Campi specifici per Giocatore -->
+        <div th:if="${ruoloSelezionato == T(com.dnlsdn.progettodocente.model.Credenziali.Ruolo).GIOCATORE}">
+            <div class="datiOrizzontale">
+                <input name="nome" placeholder="Nome" required type="text">
+                <input name="cognome" placeholder="Cognome" required type="text">
+            </div>
+            <label class="date-label" for="dataNascita">Data Di Nascita:</label>
+            <input id="dataNascita" name="dataNascita" required type="date">
+            <input name="luogoNascita" placeholder="Luogo di Nascita" required type="text">
+
+            <select id="squadra" name="squadraId" required>
+                <option disabled selected value="">Scegli una squadra</option>
+                <option th:each="squadra : ${squadre}"
+                        th:selected="${squadra.id == squadraSelezionata?.id}"
+                        th:text="${squadra.nome}"
+                        th:value="${squadra.id}">
+                </option>
+            </select>
+
+            <input name="ruoloGiocatore" placeholder="Ruolo" required type="text">
+
+            <label class="date-label" for="inizioTesseramento">Data Inizio Tesseramento:</label>
+            <input id="inizioTesseramento" name="inizioTesseramento" required type="date">
+
+            <label class="date-label" for="fineTesseramento">Data Fine Tesseramento:</label>
+            <input id="fineTesseramento" name="fineTesseramento" type="date">
+        </div>
+
+        <!-- Campi specifici per Presidente -->
+        <div th:if="${ruoloSelezionato == T(com.dnlsdn.progettodocente.model.Credenziali.Ruolo).PRESIDENTE}">
+            <div class="datiOrizzontale">
+                <input name="nome" placeholder="Nome" required type="text">
+                <input name="cognome" placeholder="Cognome" required type="text">
+            </div>
+            <input name="codiceFiscale" placeholder="Codice Fiscale" required type="text">
+            <input id="dataNascita1" name="dataNascita" required type="date">
+            <input name="luogoNascita" placeholder="Luogo di Nascita" required type="text">
+        </div>
+
+        <button type="submit">Registrati</button>
+    </form>
+
+    <div class="login">
+        Hai già un account? <a th:href="@{/login}">Login</a>
+    </div>
+    <div class="error-message" th:if="${esistente != null}">
+        <p th:text="${esistente}"></p>
+    </div>
+    <div class="error-message" th:if="${error != null}">
+        <p th:text="${error}"></p>
+    </div>
+    <div class="success-message" th:if="${success != null}">
+        <p th:text="${success}"></p>
+    </div>
+</div>
+</body>
+</html>

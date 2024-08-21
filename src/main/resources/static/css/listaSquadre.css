@@ -1,0 +1,75 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #004080;
+    color: #ffffff;
+    padding: 18px;
+    text-align: center;
+}
+
+
+.indietro img {
+    width: 30px;
+    height: auto;
+    margin-right: 20px;
+    cursor: pointer;
+    margin-left: 18px;
+    padding-top: 8px;
+}
+
+main {
+    padding: 32px;
+    padding-top: 8px;
+}
+
+.squadre-list-container {
+    overflow-y: auto;
+}
+
+.squadre-list {
+    list-style-type: none;
+    padding: 0;
+    width: min-content;
+}
+
+.squadre-list li {
+    background-color: #ffffff;
+    border: 1px solid #004080;
+    border-radius: 5px;
+    margin-bottom: 18px;
+    padding: 18px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.squadre-list p {
+    font-size: 1.2rem;
+    color: #333;
+    margin: auto;
+    margin-top: 8px;
+    white-space: nowrap;
+}
+
+.nomeSquadra {
+    font-weight: bold;
+}
+
+.riga {
+    display: flex;
+    gap: 8px;
+}
+
+.riga p {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 8px;
+}

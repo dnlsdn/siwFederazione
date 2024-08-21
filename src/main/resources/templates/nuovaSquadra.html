@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuova Squadra</title>
+    <link href="/static/css/nuovaSquadra.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/nuovaSquadra.css}">
+</head>
+<body>
+<header>
+    <a class="indietro" th:href="@{/index}">
+        <img alt="index" th:src="@{/images/back-arrow.png}">
+    </a>
+    <h1>Nuova Squadra</h1>
+</header>
+<main>
+    <div class="form">
+        <form th:action="@{/admin/nuovaSquadra}" th:method="POST" th:object="${squadra}">
+
+            <label for="nome">Nome Squadra:</label>
+            <input id="nome" name="nome" th:placeholder="'Nome Squadra'" type="text">
+
+            <label for="indirizzo">Indirizzo:</label>
+            <input id="indirizzo" name="indirizzo" th:placeholder="Indirizzo" type="text">
+
+            <label for="annoFondazione">Anno di Fondazione:</label>
+            <input id="annoFondazione" name="annoFondazione" required
+                   th:placeholder="'Anno di Fondazione'" type="number">
+
+            <label for="presidenteCognome">Presidente:</label>
+            <input id="presidenteCognome" name="presidenteCognome" th:placeholder="Presidente"
+
+                   type="text">
+
+            <button type="submit">Inserisci Squadra</button>
+            <div th:if="${errorePresidente != null}">
+                <p class="errore" th:text="${errorePresidente}"></p>
+            </div>
+
+            <div th:if="${erroreCampi != null}">
+                <p class="errore" th:text="${erroreCampi}"></p>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

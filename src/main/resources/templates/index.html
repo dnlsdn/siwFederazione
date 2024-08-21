@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Federazione Sportiva</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}" type="text/css">
+    <link href="/static/css/index.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <img alt="immagine logo" class="header-logo" src="/images/logo.png">
+
+    <!-- Messaggio per utenti non autenticati -->
+    <div class="header-noAuth" sec:authorize="isAnonymous()">
+        <h1 class="item-noAuth">Benvenuto nella Federazione Sportiva</h1>
+        <p class="item-noAuth">Per accedere a tutte le funzionalità, <a class="login-link" th:href="@{/login}">effettua
+            il login</a>.</p>
+    </div>
+
+    <!-- Messaggio per utenti autenticati -->
+    <h1 sec:authorize="isAuthenticated()">
+        Benvenuto <span sec:authentication="name">Nome Utente</span> nella Federazione Sportiva
+    </h1>
+
+    <img alt="immagine logo" class="header-logo" src="/images/logo.png">
+</header>
+
+<main>
+    <section class="main-section">
+        <div class="primaRiga">
+            <a th:href="@{/listaSquadre}">Visualizza tutte le squadre</a>
+            <a th:href="@{/profilo}">Profilo</a>
+        </div>
+
+        <div class="noRuolo" sec:authorize="!hasAuthority('AMMINISTRATORE')">
+            <a id="no-admin-link" th:href="@{/}">Inserisci/Aggiorna Squadra</a>
+            <div class="avviso-input">
+                <p>Attenzione! Non hai il permesso per accedere a questa sezione</p>
+                <input class="nascondi-checkbox" id="nascondi" type="checkbox">
+                <label class="nascondi-label" for="nascondi">Ho capito</label>
+            </div>
+        </div>
+
+        <div class="isAmministratore" sec:authorize="hasAuthority('AMMINISTRATORE')">
+            <a id="admin-link" th:href="@{/admin/gestioneSquadra}">Inserisci/Aggiorna Squadra</a>
+        </div>
+
+        <div class="noRuolo" sec:authorize="!hasAuthority('PRESIDENTE')">
+            <a id="no-presidente-link" th:href="@{/}">Inserisci/Aggiorna Squadra</a>
+            <div class="avviso-input">
+                <p>Attenzione! Non hai il permesso per accedere a questa sezione</p>
+                <input class="nascondi-checkbox" id="nascondi1" type="checkbox">
+                <label class="nascondi-label" for="nascondi1">Ho capito</label>
+            </div>
+        </div>
+
+        <div class="isRuolo" sec:authorize="hasAuthority('PRESIDENTE')">
+            <a id="presidente-link" th:href="@{/admin/gestioneSquadra}">Inserisci/Aggiorna Squadra</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Federazione Sportiva. Tutti i diritti riservati.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profilo Utente</title>
+    <link rel="stylesheet" th:href="@{/css/profilo.css}"/>
+    <link href="/static/css/profilo.css" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <div class="header-content">
+        <h1>Benvenuto nel tuo profilo</h1>
+    </div>
+</header>
+
+<main class="main-section">
+    <div class="profile-header">
+        <h2>Profilo Utente -&nbsp;</h2>
+        <div th:switch="${ruolo}">
+            <h2 th:case="'GIOCATORE'">Giocatore</h2>
+            <h2 th:case="'PRESIDENTE'">Presidente</h2>
+            <h2 th:case="*">Ruolo Sconosciuto</h2>
+        </div>
+    </div>
+
+    <!-- Se l'utente è un giocatore -->
+    <div class="profile-info" th:if="${utente instanceof T(com.dnlsdn.progettodocente.model.Giocatore)}"
+         th:object="${utente}">
+        <h3>Giocatore: <span th:text="${utente.nome} + ' ' + ${utente.cognome}"></span></h3>
+        <p>Data di nascita: <span th:text="*{dataNascita}"></span></p>
+        <p>Luogo di nascita: <span th:text="*{luogoNascita}"></span></p>
+        <p>Ruolo: <span th:text="*{ruolo}"></span></p>
+        <p>Inizio tesseramento: <span th:text="*{inizioTesseramento}"></span></p>
+        <p>Fine tesseramento: <span
+                th:text="${utente.fineTesseramento != null ? utente.fineTesseramento : '//'}">
+        </span></p>
+        <p>Squadra: <span th:text="${utente.squadra.nome}"></span></p>
+    </div>
+
+    <!-- Se l'utente è un presidente -->
+    <div class="profile-info" th:if="${utente instanceof T(com.dnlsdn.progettodocente.model.Presidente)}">
+        <h3>Presidente: <span th:text="${utente.nome} + ' ' + ${utente.cognome}"></span></h3>
+        <p>Codice Fiscale: <span th:text="${utente.codiceFiscale}"></span></p>
+        <p>Data di nascita: <span th:text="${utente.dataNascita}"></span></p>
+        <p>Luogo di nascita: <span th:text="${utente.luogoNascita}"></span></p>
+    </div>
+    <div class="logout">
+        <form th:action="@{/logout}" th:method="POST">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+    <div class="back">
+        <form th:action="@{/index}" th:method="GET">
+            <button type="submit">Torna Indietro</button>
+        </form>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>© 2024 - Tutti i diritti riservati</p>
+</footer>
+</body>
+</html>

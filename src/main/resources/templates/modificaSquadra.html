@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica Squadra</title>
+    <link rel="stylesheet" th:href="@{/css/modificaSquadra.css}">
+    <link href="/static/css/modificaSquadra.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <a class="indietro" th:href="@{/admin/gestioneSquadra}">
+        <img alt="index" th:src="@{/images/back-arrow.png}">
+    </a>
+    <div class="titolo">
+        <h1>Modifica Squadra:&nbsp;</h1>
+        <h1 th:text="${squadra.nome}">Nome Squadra</h1>
+    </div>
+</header>
+<main>
+    <div class="form">
+        <form th:action="@{/admin/aggiornaSquadra}" th:method="POST" th:object="${squadra}">
+
+            <input th:field="*{id}" type="hidden"/>
+
+            <label for="indirizzo">Indirizzo:</label>
+            <input id="indirizzo" name="indirizzo" th:placeholder="Indirizzo" th:value="*{indirizzo}" type="text">
+
+            <label for="annoFondazione">Anno di Fondazione:</label>
+            <input id="annoFondazione" name="annoFondazione" th:value="*{annoFondazione}"
+                   type="text">
+
+            <label for="presidente.cognome">Presidente:</label>
+            <input id="presidente.cognome" name="presidente.cognome" th:placeholder="Presidente"
+                   th:value="*{presidente.cognome}"
+                   type="text">
+
+            <button type="submit">Salva Modifiche</button>
+            <div th:if="${errorePresidente != null}">
+                <p class="errore" th:text="${errorePresidente}"></p>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestione Squadra</title>
+    <link href="/static/css/gestioneSquadra.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/gestioneSquadra.css}">
+</head>
+<body>
+<header>
+    <a class="indietro" th:href="@{/index}">
+        <img alt="index" th:src="@{/images/back-arrow.png}">
+    </a>
+    <h1>Inserisci o Aggiorna Squadra</h1>
+</header>
+<main>
+    <div class="ricerca">
+        <h2>Ricerca Squadre</h2>
+        <form th:action="@{/admin/gestioneSquadra}" th:method="GET">
+            <input name="nome" placeholder="Inserisci Nome Squadra" required th:value="${nome}" type="text">
+            <input type="submit" value="Cerca">
+            <a class="reset" th:href="@{/admin/gestioneSquadra}">Reset</a>
+            <a class="nuovo" th:href="@{/admin/nuovaSquadra}">Nuova Squadra</a>
+        </form>
+    </div>
+    <div class="squadre-list-container">
+        <ul class="squadre-list" th:each="squadra : ${squadre}">
+            <a th:href="@{/admin/modificaSquadra/{id}(id=${squadra.id})}">
+                <img alt="modifica" class="modifica" src="/images/modify.png"></img>
+            </a>
+            <li class="squadra">
+                <h2 th:text="${squadra.nome}">Nome Squadra</h2>
+            </li>
+        </ul>
+        <p th:if="${squadre != null && squadre.size() == 0}">Non è stata trovata alcuna squadra</p>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Lista Squadre</title>
+    <link href="/static/css/listaSquadre.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{css/listaSquadre.css}">
+</head>
+<body>
+<header>
+    <a class="indietro" th:href="@{/index}">
+        <img alt="index" th:src="@{images/back-arrow.png}">
+    </a>
+    <h1>Lista delle Squadre</h1>
+</header>
+<main>
+    <div class="squadre-list-container">
+        <ul class="squadre-list">
+            <li th:each="squadra : ${squadre}">
+                <div class="riga">
+                    <p class="nomeSquadra" th:text="${squadra.nome}"></p>
+                    <p th:text="${squadra.annoFondazione}"></p>
+                </div>
+                <div class="riga">
+                    <p>Presidente in carica: </p>
+                    <p th:text="${squadra.presidente.cognome}"></p>
+                </div>
+                <div class="riga">
+                    <p>Numero di giocatori: </p>
+                    <p th:text="${squadra.giocatori.size()}"></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</main>
+</body>
+</html>
