@@ -24,8 +24,15 @@ public class AdminSquadraController {
     public String gestioneSquadra(@RequestParam(value = "nome", required = false) String nome, Model model) {
         List<Squadra> squadre = squadraService.findAll();
         if (nome != null) {
-            squadre = squadraService.findByNome(nome);
+            squadre.clear();
+            Squadra squadra = squadraService.findByNome(nome);
+            if (squadra == null) {
+                model.addAttribute("nessunaSquadra", "Non è stata trovata alcuna squadra");
+                return "gestioneSquadra";
+            }
+            squadre.add(squadra);
         }
+
         model.addAttribute("squadre", squadre);
         model.addAttribute("nome", nome);
         return "gestioneSquadra";

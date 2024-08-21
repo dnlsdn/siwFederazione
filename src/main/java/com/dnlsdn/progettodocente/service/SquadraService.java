@@ -25,7 +25,7 @@ public class SquadraService {
         return this.squadraRepository.findById(squadraId).get();
     }
 
-    public List<Squadra> findByNome(String nome) {
+    public Squadra findByNome(String nome) {
         return this.squadraRepository.findByNome(nome);
     }
 }

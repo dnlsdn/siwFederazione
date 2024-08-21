@@ -105,6 +105,7 @@ header {
     padding: 0;
     width: min-content;
     display: flex;
+    align-items: center;
 }
 
 .squadre-list li {
@@ -114,19 +115,79 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.squadra {
+.container-principale {
     margin-left: 18px;
+    text-align: start;
 }
 
-.squadra h2 {
+.container-principale h2 {
     font-weight: bold;
     margin-top: 0;
     white-space: nowrap;
     margin-bottom: 0;
 }
 
-.modifica {
+.container-principale p {
+    margin: 0;
+    margin-top: 8px;
+    white-space: nowrap;
+}
+
+.icona {
     width: 38px;
     padding-top: 2px;
     cursor: pointer;
+}
+
+.icona:first-child {
+    margin-right: 8px;
+}
+
+.avviso-good {
+    margin-left: 8px;
+    color: green;
+    white-space: nowrap;
+}
+
+.avviso-bad {
+    margin-left: 8px;
+    color: red;
+    white-space: nowrap;
+}
+
+#form-add {
+    margin-left: 8px;
+    display: none;
+}
+
+#form-add:target {
+    display: block;
+}
+
+.form-add {
+    padding: 5px;
+    border: 1px solid #004080;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+    margin-right: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-add input {
+    border: 1px solid #004080;
+    border-radius: 2px;
+    cursor: pointer;
+    background-color: #f4f4f4;
+    width: min-content;
+}
+
+.form-add input:first-child {
+    cursor: text;
+}
+
+.form-add input:first-child {
+    margin-bottom: 8px;
 }

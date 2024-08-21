@@ -46,7 +46,7 @@
         </div>
 
         <div class="noRuolo" sec:authorize="!hasAuthority('PRESIDENTE')">
-            <a id="no-presidente-link" th:href="@{/}">Inserisci/Aggiorna Squadra</a>
+            <a id="no-presidente-link" th:href="@{/}">Inserisci/Elimina Giocatore</a>
             <div class="avviso-input">
                 <p>Attenzione! Non hai il permesso per accedere a questa sezione</p>
                 <input class="nascondi-checkbox" id="nascondi1" type="checkbox">
@@ -55,7 +55,7 @@
         </div>
 
         <div class="isRuolo" sec:authorize="hasAuthority('PRESIDENTE')">
-            <a id="presidente-link" th:href="@{/admin/gestioneSquadra}">Inserisci/Aggiorna Squadra</a>
+            <a id="presidente-link" th:href="@{/presidente/gestioneGiocatore}">Inserisci/Elimina Giocatore</a>
         </div>
     </section>
 </main>

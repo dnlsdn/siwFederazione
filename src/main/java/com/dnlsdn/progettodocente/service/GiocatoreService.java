@@ -5,6 +5,8 @@ import com.dnlsdn.progettodocente.repository.GiocatoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GiocatoreService {
 
@@ -25,5 +27,13 @@ public class GiocatoreService {
 
     public Giocatore findByCredenzialiUsername(String username) {
         return this.giocatoreRepository.findByCredenzialiUsername(username);
+    }
+
+    public List<Giocatore> findAll() {
+        return (List<Giocatore>) this.giocatoreRepository.findAll();
+    }
+
+    public Giocatore findByCognome(String cognome) {
+        return this.giocatoreRepository.findByCognome(cognome);
     }
 }

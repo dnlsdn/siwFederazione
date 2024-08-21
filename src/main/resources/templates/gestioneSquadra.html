@@ -26,13 +26,13 @@
     <div class="squadre-list-container">
         <ul class="squadre-list" th:each="squadra : ${squadre}">
             <a th:href="@{/admin/modificaSquadra/{id}(id=${squadra.id})}">
-                <img alt="modifica" class="modifica" src="/images/modify.png"></img>
+                <img alt="modifica" class="icona" src="/images/modify.png"></img>
             </a>
-            <li class="squadra">
+            <li class="container-principale">
                 <h2 th:text="${squadra.nome}">Nome Squadra</h2>
             </li>
         </ul>
-        <p th:if="${squadre != null && squadre.size() == 0}">Non è stata trovata alcuna squadra</p>
+        <p th:if="${nessunaSquadra}" th:text="${nessunaSquadra}"></p>
     </div>
 </main>
 </body>

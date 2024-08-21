@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestione Giocatore</title>
+    <link href="/static/css/gestioneSquadra.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/gestioneSquadra.css}">
+</head>
+<body>
+<header>
+    <a class="indietro" th:href="@{/index}">
+        <img alt="index" th:src="@{/images/back-arrow.png}">
+    </a>
+    <h1>Inserisci o Elimina Giocatore</h1>
+</header>
+<main>
+    <div class="ricerca">
+        <h2>Ricerca Giocatori</h2>
+        <form th:action="@{/presidente/gestioneGiocatore}" th:method="GET">
+            <input name="cognome" placeholder="Inserisci Cognome" required th:value="${cognome}" type="text">
+            <input type="submit" value="Cerca">
+            <a class="reset" th:href="@{/presidente/gestioneGiocatore}">Reset</a>
+        </form>
+    </div>
+    <div class="squadre-list-container">
+        <ul class="squadre-list" th:each="giocatore : ${giocatori}">
+            <!-- Immagine che funge da link per mostrare il modulo -->
+            <a href="#form-add">
+                <img alt="formAdd" class="icona" src="/images/add.png">
+            </a>
+
+            <!-- Modulo nascosto per impostazione predefinita -->
+            <div id="form-add">
+                <form class="form-add" th:action="@{/presidente/inserisciSquadra/{id}(id=${giocatore.id})}"
+                      th:method="POST">
+                    <input id="nomeSquadra" name="nomeSquadra" placeholder="Nome Squadra" required
+                           type="text">
+                    <input type="submit" value="Aggiungi">
+                </form>
+            </div>
+
+            <form th:action="@{/presidente/eliminaSquadraGiocatore/{id}(id=${giocatore.id})}" th:method="POST">
+                <input class="icona" src="/images/remove.png" type="image">
+            </form>
+            <li class="container-principale">
+                <h2 th:text="${giocatore.cognome}">Nome Giocatore</h2>
+                <p th:if="${giocatore.squadra != null}" th:text="'Squadra: ' + ${giocatore.squadra.nome}">Nome
+                    Squadra</p>
+                <p th:text="'Squadra: //'" th:unless="${giocatore.squadra != null}">Nessuna Squadra</p>
+            </li>
+            <p class="avviso-good" th:if="${eliminazioneSquadra != null}" th:text="${eliminazioneSquadra}">okok</p>
+            <p class="avviso-bad" th:if="${nessunaSquadra != null}" th:text="${nessunaSquadra}"></p>
+            <p class="avviso-bad" th:if="${nessunaSquadraNome != null}" th:text="${nessunaSquadraNome}"></p>
+            <p class="avviso-bad" th:if="${isSquadra != null}" th:text="${isSquadra}"></p>
+            <p class="avviso-good" th:if="${aggiuntaSquadra != null}" th:text="${aggiuntaSquadra}"></p>
+        </ul>
+        <p th:if="${nessunGiocatore}" th:text="${nessunGiocatore}">Non è stato trovato alcun giocatore</p>
+    </div>
+</main>
+</body>
+</html>
