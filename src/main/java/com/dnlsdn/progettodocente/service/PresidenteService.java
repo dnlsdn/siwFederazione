@@ -22,4 +22,8 @@ public class PresidenteService {
     public Presidente findByCognome(String cognome) {
         return this.presidenteRepository.findByCognome(cognome);
     }
+
+    public Presidente findById(Long id) {
+        return this.presidenteRepository.findById(id).get();
+    }
 }

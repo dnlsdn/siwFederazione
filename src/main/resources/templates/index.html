@@ -55,7 +55,9 @@
         </div>
 
         <div class="isRuolo" sec:authorize="hasAuthority('PRESIDENTE')">
-            <a id="presidente-link" th:href="@{/presidente/gestioneGiocatore}">Inserisci/Elimina Giocatore</a>
+            <a id="presidente-link"
+               th:href="@{/presidente/gestioneGiocatore(username=${#authentication.principal.username})}">Inserisci/Elimina
+                Giocatore</a>
         </div>
     </section>
 </main>

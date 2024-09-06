@@ -155,12 +155,12 @@ header {
     white-space: nowrap;
 }
 
-#form-add {
+[id^="form-add-"] {
     margin-left: 8px;
     display: none;
 }
 
-#form-add:target {
+[id^="form-add-"]:target {
     display: block;
 }
 

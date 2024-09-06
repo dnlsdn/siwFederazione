@@ -18,28 +18,37 @@
         <h2>Ricerca Giocatori</h2>
         <form th:action="@{/presidente/gestioneGiocatore}" th:method="GET">
             <input name="cognome" placeholder="Inserisci Cognome" required th:value="${cognome}" type="text">
+            <input name="username" th:value="${presidente.credenziali.getUsername()}" type="hidden">
             <input type="submit" value="Cerca">
-            <a class="reset" th:href="@{/presidente/gestioneGiocatore}">Reset</a>
+            <a class="reset"
+               th:href="@{/presidente/gestioneGiocatore(username=${presidente.credenziali.getUsername()})}">Reset</a>
         </form>
     </div>
     <div class="squadre-list-container">
-        <ul class="squadre-list" th:each="giocatore : ${giocatori}">
-            <!-- Immagine che funge da link per mostrare il modulo -->
-            <a href="#form-add">
+        <p class="avviso-good" th:if="${eliminazioneSquadra != null}" th:text="${eliminazioneSquadra}">okok</p>
+        <p class="avviso-bad" th:if="${nessunaSquadra != null}" th:text="${nessunaSquadra}"></p>
+        <p class="avviso-bad" th:if="${nessunaSquadraNome != null}" th:text="${nessunaSquadraNome}"></p>
+        <p class="avviso-bad" th:if="${isSquadra != null}" th:text="${isSquadra}"></p>
+        <p class="avviso-bad" th:if="${presidenteDiverso != null}" th:text="${presidenteDiverso}"></p>
+        <p class="avviso-good" th:if="${aggiuntaSquadra != null}" th:text="${aggiuntaSquadra}"></p>
+        <p class="avviso-bad" th:if="${noPres != null}" th:text="${noPres}"></p>
+        <ul class="squadre-list" th:each="giocatore, iter : ${giocatori}">
+            <a th:href="'#form-add-' + ${iter.index}">
                 <img alt="formAdd" class="icona" src="/images/add.png">
             </a>
-
-            <!-- Modulo nascosto per impostazione predefinita -->
-            <div id="form-add">
-                <form class="form-add" th:action="@{/presidente/inserisciSquadra/{id}(id=${giocatore.id})}"
+            <div th:id="'form-add-' + ${iter.index}">
+                <form class="form-add"
+                      th:action="@{/presidente/inserisciSquadra/{id}(id=${giocatore.id}, idPresidente=${presidente.id})}"
                       th:method="POST">
                     <input id="nomeSquadra" name="nomeSquadra" placeholder="Nome Squadra" required
                            type="text">
+                    <input name="idPresidente" th:value="${presidente.id}" type="hidden">
                     <input type="submit" value="Aggiungi">
                 </form>
             </div>
 
-            <form th:action="@{/presidente/eliminaSquadraGiocatore/{id}(id=${giocatore.id})}" th:method="POST">
+            <form th:action="@{/presidente/eliminaSquadraGiocatore/{idGiocatore}/{idPresidente}(idGiocatore=${giocatore.id}, idPresidente=${presidente.id})}"
+                  th:method="POST">
                 <input class="icona" src="/images/remove.png" type="image">
             </form>
             <li class="container-principale">
@@ -48,11 +57,6 @@
                     Squadra</p>
                 <p th:text="'Squadra: //'" th:unless="${giocatore.squadra != null}">Nessuna Squadra</p>
             </li>
-            <p class="avviso-good" th:if="${eliminazioneSquadra != null}" th:text="${eliminazioneSquadra}">okok</p>
-            <p class="avviso-bad" th:if="${nessunaSquadra != null}" th:text="${nessunaSquadra}"></p>
-            <p class="avviso-bad" th:if="${nessunaSquadraNome != null}" th:text="${nessunaSquadraNome}"></p>
-            <p class="avviso-bad" th:if="${isSquadra != null}" th:text="${isSquadra}"></p>
-            <p class="avviso-good" th:if="${aggiuntaSquadra != null}" th:text="${aggiuntaSquadra}"></p>
         </ul>
         <p th:if="${nessunGiocatore}" th:text="${nessunGiocatore}">Non è stato trovato alcun giocatore</p>
     </div>
