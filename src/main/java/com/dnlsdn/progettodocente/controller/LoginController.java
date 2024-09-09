@@ -1,6 +1,5 @@
 package com.dnlsdn.progettodocente.controller;
 
-import com.dnlsdn.progettodocente.service.CredenzialiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,8 +16,6 @@ public class LoginController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
-    @Autowired
-    private CredenzialiService credenzialiService;
 
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, Model model) {

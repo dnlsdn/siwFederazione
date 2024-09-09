@@ -46,7 +46,6 @@ header {
     background-color: #f4f4f4;
 }
 
-/* Stile per il pulsante di submit */
 .ricerca input[type="submit"] {
     padding: 10px 15px;
     background-color: #004080;
@@ -62,7 +61,6 @@ header {
     background-color: #0056b3;
 }
 
-/* Stile per il link di reset */
 .ricerca .reset {
     padding: 10px 15px;
     background-color: #f4f4f4;

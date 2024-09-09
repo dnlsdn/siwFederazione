@@ -9,7 +9,7 @@ body {
     background: white;
 }
 
-.wrapper {
+.principale {
     width: 330px;
     padding: 2rem 1rem;
     margin: 50px auto;
@@ -112,29 +112,29 @@ input:focus {
     border: 1px solid rgb(192, 192, 192);
 }
 
-.giocatore {
-    /*width: 180px;*/
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: start;
-}
+/*.giocatore {*/
+/*    !*width: 180px;*!*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: center;*/
+/*    align-items: start;*/
+/*}*/
 
-.giocatore input, label {
-    margin: 0;
-    padding: 0;
-}
+/*.giocatore input, label {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
 
-.giocatore input {
-    width: 12px;
-    height: 12px;
-    margin-right: 8px;
-}
+/*.giocatore input {*/
+/*    width: 12px;*/
+/*    height: 12px;*/
+/*    margin-right: 8px;*/
+/*}*/
 
-.giocatore label {
-    white-space: nowrap;
-    font-size: 15px;
-}
+/*.giocatore label {*/
+/*    white-space: nowrap;*/
+/*    font-size: 15px;*/
+/*}*/
 
 .login {
     font-size: 0.8rem;
@@ -147,16 +147,22 @@ input:focus {
     text-decoration: none;
 }
 
+.divider {
+    border-top: 1px solid gray;
+    width: 88%;
+    margin: 8px auto 18px auto;
+}
+
 .error-message {
     padding: 18px 0 0 0;
     color: red;
     font-size: 0.8rem;
 }
 
-.isGiocatore {
-    display: none;
-    padding-top: 18px;
-}
+/*.isGiocatore {*/
+/*    display: none;*/
+/*    padding-top: 18px;*/
+/*}*/
 
 select {
     width: 92%;
