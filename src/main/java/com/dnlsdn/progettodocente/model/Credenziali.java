@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 public class Credenziali {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull

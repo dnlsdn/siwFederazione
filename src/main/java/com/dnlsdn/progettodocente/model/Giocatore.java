@@ -1,19 +1,26 @@
 package com.dnlsdn.progettodocente.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 
 @Entity
 public class Giocatore {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank
     private String nome;
+    @NotBlank
     private String cognome;
+    //    @Min(1908)
+//    @Max(2024)
     private LocalDate dataNascita;
+    @NotBlank
     private String luogoNascita;
+    @NotBlank
     private String ruolo;
 
     private LocalDate inizioTesseramento;
